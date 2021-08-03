@@ -1,10 +1,29 @@
+# import numpy as np
+# from keras.models import Model
+# from keras.layers import Input, LSTM, Dense, Embedding, Dropout, Activation, Bidirectional
+# from keras.layers import Concatenate, Dot, Reshape, RepeatVector, Lambda
+# from keras.activations import softmax
+# from .shared_constants import PREDICTION_MODEL_WEIGHTS_PATH
+# from .prediction_model_utils import PredictionModelUtils, START_PHONE_SYM, END_PHONE_SYM, MAX_CHAR_SEQ_LEN, MAX_PADDED_PHONE_SEQ_LEN
+
 import numpy as np
 from keras.models import Model
 from keras.layers import Input, LSTM, Dense, Embedding, Dropout, Activation, Bidirectional
 from keras.layers import Concatenate, Dot, Reshape, RepeatVector, Lambda
 from keras.activations import softmax
-from .shared_constants import PREDICTION_MODEL_WEIGHTS_PATH
-from .prediction_model_utils import PredictionModelUtils, START_PHONE_SYM, END_PHONE_SYM, MAX_CHAR_SEQ_LEN, MAX_PADDED_PHONE_SEQ_LEN
+import tensorflow as tf
+from keras.backend import set_session
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+graph = tf.get_default_graph()
+
+set_session(sess)
+
 
 
 class PredictionModel:
